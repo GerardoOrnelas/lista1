@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema hoy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    body {
+        text-align: center;
+        background-color: #f0f0f0;
+    }
+</style>
+
+<body>
+    <h1>Elige una bebida</h1>
+    <form id="bebidaForm">
+        <label>¿Qué bebida quieres?</label>
+        <select id="bebidaSelect">
+            <option value="cafe">Café</option>
+            <option value="te">Té</option>
+            <option value="leche">Leche</option>
+            <option value="malteada">Malteada</option>
+            <option value="jugo">Jugo</option>
+        </select>
+        <br>
+        <label for="cantidadInput">¿Cuántos quieres?</label>
+        <input type="number" id="cantidadInput" min="1" value="1">
+        <br>
+        <button type="button" id="calcularBtn">Calcular Precio</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        const precios = {
+            cafe: 45,
+            te: 35,
+            leche: 20,
+            malteada: 60,
+            jugo: 25
+        };
+
+        const calcularBtn = document.getElementsByTagName("button")[0];
+        const resultadoEl = document.getElementsByTagName("p")[0];
+
+        calcularBtn.addEventListener("click", function () {
+            const bebidaSeleccionada = document.getElementById("bebidaSelect").value;
+            const cantidad = parseInt(document.getElementById("cantidadInput").value);
+
+            const precioU = precios[bebidaSeleccionada] || 0;
+            const precioTotal = precioU * cantidad;
+
+            resultadoEl.textContent = `Elegiste ${cantidad} ${bebidaSeleccionada}(s) y el precio total es $${precioTotal}.`;
+        });
+    </script>
+</body>
+</html>
+
